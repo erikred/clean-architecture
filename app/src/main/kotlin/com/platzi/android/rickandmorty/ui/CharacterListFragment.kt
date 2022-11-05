@@ -105,7 +105,7 @@ class CharacterListFragment : Fragment() {
             characterListViewModel.onRetryGetAllCharacter(rvCharacterList.adapter?.itemCount ?: 0)
         }
 
-        characterListViewModel.events.observe(this, Observer {
+        characterListViewModel.events.observe(viewLifecycleOwner, Observer {
             events -> events?.getContentIfNotHandled()?.let {
                 navigation ->
             when(navigation){

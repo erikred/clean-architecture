@@ -80,6 +80,9 @@ dependencies {
     kapt roomCompiler
     implementation roomRxJavaLib
 
+    //Added in class 8
+    implementation reactiveStreamsLib
+
     //RxJava
     implementation rxAndroidLib
     implementation rxJavaLib
