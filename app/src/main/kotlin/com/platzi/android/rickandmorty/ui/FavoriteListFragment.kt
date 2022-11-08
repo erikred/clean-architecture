@@ -56,7 +56,7 @@ class FavoriteListFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         characterRequest = CharacterRequest(BASE_API_URL)
         characterDao = CharacterDatabase.getDatabase(activity!!.applicationContext).characterDao()
@@ -85,10 +85,10 @@ class FavoriteListFragment : Fragment() {
         }
 
         favoriteListViewModel.favoriteCharacterList.observe(
-            this, Observer(favoriteListViewModel::onFavoriteCharacterList)
+            viewLifecycleOwner, Observer(favoriteListViewModel::onFavoriteCharacterList)
         )
         favoriteListViewModel.events.observe(
-            this, Observer {
+            viewLifecycleOwner, Observer {
                 events ->
                 events?.getContentIfNotHandled()?.let {
                     navigation ->
