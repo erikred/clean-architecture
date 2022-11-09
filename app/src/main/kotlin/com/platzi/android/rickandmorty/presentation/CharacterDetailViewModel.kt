@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.platzi.android.rickandmorty.api.*
 import com.platzi.android.rickandmorty.database.CharacterDao
 import com.platzi.android.rickandmorty.database.CharacterEntity
+import com.platzi.android.rickandmorty.usecases.GetEpisodeFromCharacterUseCase
 
 import io.reactivex.Maybe
 import io.reactivex.Observable
@@ -17,7 +18,7 @@ import io.reactivex.schedulers.Schedulers
 
 class CharacterDetailViewModel(private  val character: CharacterServer? = null,
 private val characterDao: CharacterDao,
-private val episodeRequest: EpisodeRequest): ViewModel() {
+private val getEpisodeFromCharacterUseCase: GetEpisodeFromCharacterUseCase): ViewModel() {
 
     //region Fields
 
@@ -94,17 +95,7 @@ private val episodeRequest: EpisodeRequest): ViewModel() {
 
     private fun requestShowEpisodeList(episodeUrlList: List<String>){
         disposable.add(
-            Observable.fromIterable(episodeUrlList)
-                .flatMap { episode: String ->
-                    episodeRequest.baseUrl = episode
-                    episodeRequest
-                        .getService<EpisodeService>()
-                        .getEpisode()
-                        .toObservable()
-                }
-                .toList()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
+            getEpisodeFromCharacterUseCase.invoke(episodeUrlList)
                 .doOnSubscribe {
                     _events.value = Event(CharacterDetailNavigation.ShowEpisodeListLoading)
                 }

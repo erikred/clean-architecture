@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.platzi.android.rickandmorty.api.*
 import com.platzi.android.rickandmorty.ui.CharacterListFragment
+import com.platzi.android.rickandmorty.usecases.GetAllCharacterUseCase
 import com.platzi.android.rickandmorty.utils.showLongToast
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -12,7 +13,7 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_character_list.*
 
 class CharacterListViewModel(
-    private val characterRequest: CharacterRequest
+    private val getAllCharacterUseCase: GetAllCharacterUseCase
 ) : ViewModel() {
 
     private val disposable = CompositeDisposable()
@@ -61,12 +62,7 @@ class CharacterListViewModel(
 
     fun onGetAllCharacters(){
         disposable.add(
-            characterRequest
-                .getService<CharacterService>()
-                .getAllCharacters(currentPage)
-                .map(CharacterResponseServer::toCharacterServerList)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
+            getAllCharacterUseCase.invoke(currentPage)
                 .doOnSubscribe {
                     //srwCharacterList.isRefreshing = true
                     _events.value = Event(CharacterListNavigation.ShowLading)
