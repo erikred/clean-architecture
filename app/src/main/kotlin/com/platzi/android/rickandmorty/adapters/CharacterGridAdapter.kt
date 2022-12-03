@@ -5,18 +5,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.platzi.android.rickandmorty.R
 import com.platzi.android.rickandmorty.api.CharacterServer
 import com.platzi.android.rickandmorty.databinding.ItemGridCharacterBinding
+import com.platzi.android.rickandmorty.domain.Character
 import com.platzi.android.rickandmorty.utils.bindImageUrl
 import com.platzi.android.rickandmorty.utils.bindingInflate
 import kotlinx.android.synthetic.main.item_grid_character.view.*
 
 
 class CharacterGridAdapter(
-    private val listener: (CharacterServer) -> Unit
+    private val listener: (Character) -> Unit
 ): RecyclerView.Adapter<CharacterGridAdapter.CharacterGridViewHolder>() {
 
-    private val characterList: MutableList<CharacterServer> = mutableListOf()
+    private val characterList: MutableList<Character> = mutableListOf()
 
-    fun addData(newData: List<CharacterServer>) {
+    fun addData(newData: List<Character>) {
         characterList.addAll(newData)
         notifyDataSetChanged()
     }
@@ -37,11 +38,11 @@ class CharacterGridAdapter(
 
     class CharacterGridViewHolder(
         private val dataBinding: ItemGridCharacterBinding,
-        private val listener: (CharacterServer) -> Unit
+        private val listener: (Character) -> Unit
     ): RecyclerView.ViewHolder(dataBinding.root) {
 
         //region Public Methods
-        fun bind(item: CharacterServer){
+        fun bind(item: Character){
             dataBinding.character = item
             itemView.character_image.bindImageUrl(
                 url = item.image,

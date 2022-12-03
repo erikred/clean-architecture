@@ -5,18 +5,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.platzi.android.rickandmorty.R
 import com.platzi.android.rickandmorty.database.CharacterEntity
 import com.platzi.android.rickandmorty.databinding.ItemGridFavoriteCharacterBinding
+import com.platzi.android.rickandmorty.domain.Character
 import com.platzi.android.rickandmorty.utils.bindImageUrl
 import com.platzi.android.rickandmorty.utils.bindingInflate
 import kotlinx.android.synthetic.main.item_grid_favorite_character.view.*
 
 
 class FavoriteListAdapter(
-    private val listener: (CharacterEntity) -> Unit
+    private val listener: (Character) -> Unit
 ): RecyclerView.Adapter<FavoriteListAdapter.FavoriteListViewHolder>() {
 
-    private val characterList: MutableList<CharacterEntity> = mutableListOf()
+    private val characterList: MutableList<Character> = mutableListOf()
 
-    fun updateData(newData: List<CharacterEntity>) {
+    fun updateData(newData: List<Character>) {
         characterList.clear()
         characterList.addAll(newData)
         notifyDataSetChanged()
@@ -38,12 +39,12 @@ class FavoriteListAdapter(
 
     class FavoriteListViewHolder(
         private val dataBinding: ItemGridFavoriteCharacterBinding,
-        private val listener: (CharacterEntity) -> Unit
+        private val listener: (Character) -> Unit
     ): RecyclerView.ViewHolder(dataBinding.root) {
 
         //region Public Methods
 
-        fun bind(item: CharacterEntity){
+        fun bind(item: Character){
             dataBinding.character = item
             itemView.character_image.bindImageUrl(
                 url = item.image,
