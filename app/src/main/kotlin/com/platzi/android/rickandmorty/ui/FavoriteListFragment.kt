@@ -17,6 +17,7 @@ import com.platzi.android.rickandmorty.database.CharacterDao
 import com.platzi.android.rickandmorty.database.CharacterDatabase
 import com.platzi.android.rickandmorty.database.CharacterEntity
 import com.platzi.android.rickandmorty.databinding.FragmentFavoriteListBinding
+import com.platzi.android.rickandmorty.domain.Character
 import com.platzi.android.rickandmorty.presentation.FavoriteListViewModel
 import com.platzi.android.rickandmorty.usecases.GetAllFavoriteCharactersUseCase
 import com.platzi.android.rickandmorty.utils.setItemDecorationSpacing
@@ -123,7 +124,7 @@ class FavoriteListFragment : Fragment() {
     //region Inner Classes & Interfaces
 
     interface OnFavoriteListFragmentListener {
-        fun openCharacterDetail(character: CharacterEntity)
+        fun openCharacterDetail(character: Character)
     }
 
     //endregion

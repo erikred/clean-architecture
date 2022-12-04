@@ -4,21 +4,14 @@ package com.platzi.android.rickandmorty.presentation
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.platzi.android.rickandmorty.api.*
-import com.platzi.android.rickandmorty.database.CharacterDao
-import com.platzi.android.rickandmorty.database.CharacterEntity
+import com.platzi.android.rickandmorty.api.EpisodeServer
+import com.platzi.android.rickandmorty.domain.Character
 import com.platzi.android.rickandmorty.usecases.GetEpisodeFromCharacterUseCase
 import com.platzi.android.rickandmorty.usecases.GetFavoriteCharacterStatusUseCase
 import com.platzi.android.rickandmorty.usecases.UpdateFavoriteCharacterStatusUseCase
-
-import io.reactivex.Maybe
-import io.reactivex.Observable
-
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
 
-class CharacterDetailViewModel(private  val character: CharacterServer? = null,
+class CharacterDetailViewModel(private  val character: Character? = null,
                                private val getFavoriteCharacterStatusUseCase: GetFavoriteCharacterStatusUseCase,
                                private val updateFavoriteCharacterStatusUseCase: UpdateFavoriteCharacterStatusUseCase,
                                private val getEpisodeFromCharacterUseCase: GetEpisodeFromCharacterUseCase): ViewModel() {
@@ -27,8 +20,8 @@ class CharacterDetailViewModel(private  val character: CharacterServer? = null,
 
     private val disposable = CompositeDisposable()
 
-    private val _characterValues = MutableLiveData<CharacterServer>()
-    val characterValues: LiveData<CharacterServer> get() = _characterValues
+    private val _characterValues = MutableLiveData<Character>()
+    val characterValues: LiveData<Character> get() = _characterValues
 
     private val _isFavorite = MutableLiveData<Boolean>()
     val isFavorite: LiveData<Boolean> get() = _isFavorite
@@ -57,10 +50,9 @@ class CharacterDetailViewModel(private  val character: CharacterServer? = null,
     }
 
     fun onUpdateFavoriteCharacterStatus(){
-        val characterEntity: CharacterEntity = character!!.toCharacterEntity()
         disposable.add(
 
-                updateFavoriteCharacterStatusUseCase.invoke(characterEntity).subscribe {
+                updateFavoriteCharacterStatusUseCase.invoke(character!!).subscribe {// No es considerada una buena practica poner el doble signo de admiracion en lugar de ello se sugiere unar el operador let
                     isFavorite ->
                     _isFavorite.value = isFavorite
                 }

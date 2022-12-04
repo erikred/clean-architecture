@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.platzi.android.rickandmorty.api.*
+import com.platzi.android.rickandmorty.domain.Character
 import com.platzi.android.rickandmorty.ui.CharacterListFragment
 import com.platzi.android.rickandmorty.usecases.GetAllCharacterUseCase
 import com.platzi.android.rickandmorty.utils.showLongToast
@@ -93,7 +94,7 @@ class CharacterListViewModel(
 
     sealed class CharacterListNavigation {
         data class ShowCharacterError(val error: Throwable) : CharacterListNavigation()
-        data class ShowCharacterList(val characterList: List<CharacterServer>) : CharacterListNavigation()
+        data class ShowCharacterList(val characterList: List<Character>) : CharacterListNavigation()
         object HideLoading : CharacterListNavigation()
         object ShowLading : CharacterListNavigation()
     }
