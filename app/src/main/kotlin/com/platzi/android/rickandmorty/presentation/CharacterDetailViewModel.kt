@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.platzi.android.rickandmorty.api.EpisodeServer
 import com.platzi.android.rickandmorty.domain.Character
+import com.platzi.android.rickandmorty.domain.Episode
 import com.platzi.android.rickandmorty.usecases.GetEpisodeFromCharacterUseCase
 import com.platzi.android.rickandmorty.usecases.GetFavoriteCharacterStatusUseCase
 import com.platzi.android.rickandmorty.usecases.UpdateFavoriteCharacterStatusUseCase
@@ -97,7 +98,7 @@ class CharacterDetailViewModel(private  val character: Character? = null,
     //region Inner Classes & Interfaces
     sealed class CharacterDetailNavigation{
         data class ShowEpisodeError(val error: Throwable): CharacterDetailNavigation()
-        data class ShowEpisodeList(val episodeList: List<EpisodeServer>): CharacterDetailNavigation()
+        data class ShowEpisodeList(val episodeList: List<Episode>): CharacterDetailNavigation()
         object CloseActivity: CharacterDetailNavigation()
         object HideEpisodeListLoading: CharacterDetailNavigation()
         object ShowEpisodeListLoading: CharacterDetailNavigation()

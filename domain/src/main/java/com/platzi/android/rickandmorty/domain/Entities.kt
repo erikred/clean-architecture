@@ -22,3 +22,9 @@ data class Location(
     val name: String,
     val url: String
 )
+
+//Agregar entidad de episodio
+data class Episode(
+    val id: Int,
+    val name: String
+)

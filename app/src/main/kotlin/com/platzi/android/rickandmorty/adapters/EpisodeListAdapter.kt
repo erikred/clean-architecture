@@ -5,16 +5,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.platzi.android.rickandmorty.R
 import com.platzi.android.rickandmorty.api.EpisodeServer
 import com.platzi.android.rickandmorty.databinding.ItemListEpisodeBinding
+import com.platzi.android.rickandmorty.domain.Episode
 import com.platzi.android.rickandmorty.utils.bindingInflate
 
 
 class EpisodeListAdapter(
-    private val listener: (EpisodeServer) -> Unit
+    private val listener: (Episode) -> Unit
 ): RecyclerView.Adapter<EpisodeListAdapter.EpisodeListViewHolder>() {
 
-    private val episodeList: MutableList<EpisodeServer> = mutableListOf()
+    private val episodeList: MutableList<Episode> = mutableListOf()
 
-    fun updateData(newData: List<EpisodeServer>) {
+    fun updateData(newData: List<Episode>) {
         episodeList.clear()
         episodeList.addAll(newData)
         notifyDataSetChanged()
@@ -34,11 +35,11 @@ class EpisodeListAdapter(
 
     class EpisodeListViewHolder(
         private val dataBinding: ItemListEpisodeBinding,
-        private val listener: (EpisodeServer) -> Unit
+        private val listener: (Episode) -> Unit
     ): RecyclerView.ViewHolder(dataBinding.root) {
 
         //region Public Methods
-        fun bind(item: EpisodeServer){
+        fun bind(item: Episode){
             dataBinding.episode = item
             itemView.setOnClickListener { listener(item) }
         }

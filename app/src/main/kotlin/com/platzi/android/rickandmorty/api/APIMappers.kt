@@ -4,6 +4,7 @@ import com.platzi.android.rickandmorty.database.CharacterEntity
 import com.platzi.android.rickandmorty.database.LocationEntity
 import com.platzi.android.rickandmorty.database.OriginEntity
 import com.platzi.android.rickandmorty.domain.Character
+import com.platzi.android.rickandmorty.domain.Episode
 import com.platzi.android.rickandmorty.domain.Location
 import com.platzi.android.rickandmorty.domain.Origin
 
@@ -43,4 +44,8 @@ fun OriginServer.toOriginDomain() = Origin(
 fun LocationServer.toLocationDomain() = Location(
     name,
     url
+)
+
+fun EpisodeServer.toEpisodeDomain() = Episode(
+    id, name
 )
