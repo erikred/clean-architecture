@@ -14,7 +14,6 @@
           <stringArguments>
             <stringArg name="classpath">
               <args>
-                <arg>$MODULE_DIR$/../../../app/build/intermediates/compile_and_runtime_not_namespaced_r_class_jar/debug/R.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/4ca9bdaa852f81f04d1d20be1ee399fb/transformed/room-rxjava2-2.2.5-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/601e7efb291d4835fc38ba5031f6e7a2/transformed/room-runtime-2.2.5-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/ebbb445904822a7cd9d83383b422fdb7/transformed/databinding-runtime-7.2.0-api.jar</arg>
@@ -163,6 +162,15 @@
     <orderEntry type="jdk" jdkName="Android API 31 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="RickAndMortyPlatzi.app.main" scope="TEST" />
+    <orderEntry type="module-library" scope="TEST">
+      <library name="Gradle: kaptGeneratedClasses">
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../../../app/build/tmp/kapt3/classes/debugUnitTest" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
     <orderEntry type="module" module-name="RickAndMortyPlatzi.domain.main" scope="TEST" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.room:room-common:2.2.5" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.annotation:annotation:1.1.0" level="project" />
